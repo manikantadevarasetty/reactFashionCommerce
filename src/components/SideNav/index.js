@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import accordionSlice from '../../Redux/Accordion/accordionSlice'
 import { getCategories } from '../../Redux/Category/actions'
 import { filterByPrice, filterProducts } from '../../Redux/Product/productSlice'
-const SideNav = () => {
+const SideNav = ({setSortData}) => {
 
     let accordionData= useSelector(state=>state.categoryReducer.categories);
     let  fetchedProductData= useSelector(state=>state.productReducer)
@@ -103,7 +103,8 @@ if(eachData.parent_category_id==null)
             </div>
            */}
 
-
+            <button className='btn btn-outline-dark  my-3' onClick={()=>{setSortData('name')}}>Sort By Product </button>
+            <button className='btn btn-outline-dark  my-3' onClick={()=>{setSortData('price')}}>Sort By Price </button>
 
         </div>
         <div className="price-filter-container">
@@ -138,8 +139,6 @@ if(eachData.parent_category_id==null)
             </div>
             <div>
             <button className='btn btn-outline-dark  my-3' onClick={()=>{dispatch(filterByPrice({products:products, minPrice:minPriceLimit,maxPrice:maxPriceLimit}))}}> Apply Filter</button>
-           
-
          </div>
 
                </div>
